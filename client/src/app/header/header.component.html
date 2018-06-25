@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <a class="navbar-brand" routerLink="/">Issues tracker</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-left">
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+                <input type="text" class="form-control">
+            </div>
+            <input type="button" class="btn btn-default" value="Поиск">
+          </form>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li *ngIf="this.isLoginUser === true" dropdown>
+                <a dropdownToggle>Меню<span class="caret"></span></a>
+                <ul class="dropdown-menu" *dropdownMenu>
+                    <li (click)="openCreateBoardDialog()"><a>Создать доску</a></li>
+                    <li (click)="openCreateColumnDialog()"><a>Создать колонку</a></li>
+                    <li (click)="openCreateTicketDialog()"><a>Создать тикет</a></li>
+                </ul>
+            </li>
+            <li *ngIf="this.isLoginUser === false" (click)="openLoginDialog()"><a><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+            <li *ngIf="this.isLoginUser === false" (click)="openSignUpDialog()"><a><span class="glyphicon glyphicon glyphicon-user"></span> Зарегистрироваться</a></li>
+            <li *ngIf="this.isLoginUser === true" (click)="clickLogout()"><a><span class="glyphicon glyphicon-log-out"></span> Выйти</a></li>
+        </ul>
+      </div>
+  </div>
+</nav>
+<app-create-board></app-create-board>
+<app-create-column></app-create-column>
+<app-create-ticket></app-create-ticket>
+<app-login></app-login>
+<app-registration></app-registration>
+
+

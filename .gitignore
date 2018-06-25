@@ -1,0 +1,9 @@
+.idea
+*.iml
+
+client/dist/
+client/etc/
+client/node/
+client/node_modules/
+client/target/
+web/target/

@@ -1,0 +1,19 @@
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Регистрация</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form class="form-reg">
+            <label class="sr-only">Логин</label>
+            <input [(ngModel)]="login" [ngModelOptions]="{standalone: true}"  type="text" class="form-control" placeholder="Логин">
+            <label class="sr-only">Пароль</label>
+            <input [(ngModel)]="password" [ngModelOptions]="{standalone: true}" type="password" class="form-control" placeholder="Пароль">
+            <div style="color: red">{{signUpErrorObservable | async}}</div>
+            <button (click)="clickOnRegistration()" class="btn btn-lg btn-primary btn-block" type="submit">Зарегестрироваться</button>
+        </form>
+    </div>
+</ng-template>
+<app-notification></app-notification>

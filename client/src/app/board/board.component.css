@@ -1,0 +1,73 @@
+
+.section {
+  clear: both;
+  padding: 0px;
+  margin: 0% 1% 0% 1%;
+}
+
+.col {
+  display: block;
+  float: left;
+  margin: 0% 0% 1% 1.5%;
+}
+.col:first-child { margin-left: 0; }
+
+.group:before,
+.group:after { content:""; display:table; }
+.group:after { clear:both;}
+.group { zoom:1; /* For IE 6/7 */ }
+
+.span_10_of_10 {
+  width: 100%;
+}
+
+.span_1_of_2 {
+  width: 49.25%;
+}
+
+.span_1_of_4 {
+  width: 23.5%;
+}
+
+.span_1_of_3 {
+  width: 28.95%;
+}
+
+.span_1_of_5 {
+  width: 18.8%;
+}
+
+.span_1_of_6 {
+  width: 15.1%;
+}
+.span_1_of_7 {
+   width: 12.75%;
+ }
+.span_1_of_8 {
+  width: 11%;
+}
+.span_1_of_9 {
+  width: 9.6%;
+}
+.span_1_of_10 {
+  width: 8.5%;
+}
+
+@media only screen and (max-width: 1600px) {
+  .col { margin: 0% 1% 1% 0%}
+  .span_1_of_10, .span_1_of_9, .span_1_of_8, .span_1_of_7, .span_1_of_6, .span_1_of_5, .span_1_of_4, .span_1_of_3, .span_1_of_2, .span_10_of_10{
+    width: 18.8%;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .col {  margin: 0% 1% 1% 0%; }
+  .span_1_of_10, .span_1_of_9, .span_1_of_8, .span_1_of_7, .span_1_of_6, .span_1_of_5, .span_1_of_4, .span_1_of_3, .span_1_of_2, .span_10_of_10{
+    width: 48%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .col {  margin: 0% 0 1% 0%; }
+  .span_1_of_10, .span_1_of_9, .span_1_of_8, .span_1_of_7, .span_1_of_6, .span_1_of_5, .span_1_of_4, .span_1_of_3, .span_1_of_2, .span_10_of_10{
+    width: 100%;
+  }
+}

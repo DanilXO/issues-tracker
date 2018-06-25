@@ -1,0 +1,84 @@
+<div class="section group" *ngIf="board !== null">
+  <div [ngSwitch]="board.columns.length">
+    <div *ngSwitchCase="1">
+    <div *ngFor="let column of board.columns" class="col span_10_of_10">
+      <app-column [id]="column.id"
+                  [name]="column.name"
+                  [tickets]="column.tickets">
+      </app-column>
+    </div>
+  </div>
+    <div *ngSwitchCase="2">
+    <div *ngFor="let column of board.columns" class="col span_1_of_2">
+        <app-column [id]="column.id"
+                    [name]="column.name"
+                    [tickets]="column.tickets">
+        </app-column>
+    </div>
+  </div>
+    <div *ngSwitchCase="3">
+    <div *ngFor="let column of board.columns" class="col span_1_of_3">
+      <app-column [id]="column.id"
+                  [name]="column.name"
+                  [tickets]="column.tickets">
+      </app-column>
+    </div>
+  </div>
+    <div *ngSwitchCase="4">
+    <div *ngFor="let column of board.columns" class="col span_1_of_4">
+      <app-column [id]="column.id"
+                  [name]="column.name"
+                  [tickets]="column.tickets">
+      </app-column>
+    </div>
+  </div>
+    <div *ngSwitchCase="5">
+    <div *ngFor="let column of board.columns" class="col span_1_of_5">
+      <app-column [id]="column.id"
+                  [name]="column.name"
+                  [tickets]="column.tickets">
+      </app-column>
+    </div>
+  </div>
+    <div *ngSwitchCase="6">
+      <div *ngFor="let column of board.columns" class="col span_1_of_6">
+        <app-column [id]="column.id"
+                    [name]="column.name"
+                    [tickets]="column.tickets">
+        </app-column>
+      </div>
+    </div>
+    <div *ngSwitchCase="7">
+      <div *ngFor="let column of board.columns" class="col span_1_of_7">
+        <app-column [id]="column.id"
+                    [name]="column.name"
+                    [tickets]="column.tickets">
+        </app-column>
+      </div>
+    </div>
+    <div *ngSwitchCase="8">
+      <div *ngFor="let column of board.columns" class="col span_1_of_8">
+        <app-column [id]="column.id"
+                    [name]="column.name"
+                    [tickets]="column.tickets">
+        </app-column>
+      </div>
+    </div>
+    <div *ngSwitchCase="9">
+      <div *ngFor="let column of board.columns" class="col span_1_of_9">
+        <app-column [id]="column.id"
+                    [name]="column.name"
+                    [tickets]="column.tickets">
+        </app-column>
+      </div>
+    </div>
+    <div *ngSwitchDefault>
+      <div *ngFor="let column of board.columns" class="col span_1_of_10">
+        <app-column [id]="column.id"
+                    [name]="column.name"
+                    [tickets]="column.tickets">
+        </app-column>
+      </div>
+    </div>
+  </div>
+</div>

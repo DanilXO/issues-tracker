@@ -1,0 +1,63 @@
+image: docker:1.12.6
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - publish
+  - deploy-to-heroku
+
+build:
+  cache:
+    key: ${CI_JOB_STAGE}
+    paths:
+      - .m2/
+  image: maven:3.3.9-jdk-8
+  stage: build
+  script:
+    - mvn clean install
+  artifacts:
+    paths:
+    - docker/*
+    - web/target/*.war
+
+.publish-template: &publish-base
+  stage: publish
+  script:
+    - docker login ${DOCKER_REGISTRY_URL} --password ${DOCKER_REGISTRY_PASSWORD} --username ${DOCKER_REGISTRY_LOGIN}
+    - docker build -f docker/Dockerfile -t ${DOCKER_REGISTRY_URL}/gui-curators-group/issues-tracker:${IMAGE_VERSION} .
+    - docker push registry.gitlab.com/gui-curators-group/issues-tracker:${IMAGE_VERSION}
+
+publish-develop:
+  variables:
+    IMAGE_VERSION: latest
+  <<: *publish-base
+  only:
+    - develop
+
+#publish-feature:
+#  variables:
+#    IMAGE_VERSION: $CI_COMMIT_REF_NAME
+#  before_script:
+#    - IMAGE_VERSION=$(echo $IMAGE_VERSION | cut -c6)
+#  <<: *publish-base
+#  only:
+#    - /^feature/.*$/
+
+deploy-to-heroku:
+  stage: deploy-to-heroku
+  script:
+    - docker images
+    - docker login ${DOCKER_REGISTRY_URL} --password ${DOCKER_REGISTRY_PASSWORD} --username ${DOCKER_REGISTRY_LOGIN}
+    - docker images
+    - docker pull ${DOCKER_REGISTRY_URL}/gui-curators-group/issues-tracker:latest
+    - docker login registry.heroku.com --password ${HEROKU_API_KEY} --username ${DOCKER_REGISTRY_LOGIN}
+    - docker tag registry.gitlab.com/gui-curators-group/issues-tracker:latest registry.heroku.com/issues-tracker-develop/web
+    - docker push registry.heroku.com/issues-tracker-develop/web
+  only:
+    - develop
+#    - /^feature/.*$/
+  environment:
+    name: develop
+    url: https://issues-tracker-develop.herokuapp.com

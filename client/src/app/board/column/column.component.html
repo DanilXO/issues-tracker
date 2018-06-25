@@ -1,0 +1,13 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="box-header">
+            <div class="listTitle">{{name}}</div>
+            <div class="right-content">
+                <button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div *ngFor="let ticket of tickets">
+        <app-ticket [ticket]="ticket"></app-ticket>
+    </div>
+</div>

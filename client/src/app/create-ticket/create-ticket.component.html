@@ -1,0 +1,32 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Создать тикет</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-signin">
+      <div class="form-group">
+        <label class="col-xs-3 control-label">Board</label>
+        <div class="col-xs-9 selectContainer">
+          <select class="form-control" (change)="boardChange()" [(ngModel)]="boardid" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let item of boardListObservable | async" value="{{item.id}}">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <label class="col-xs-3 control-label">Column</label>
+        <div class="col-xs-9 selectContainer">
+          <select class="form-control" [(ngModel)]="columnid" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let item of columnListObservable | async" value="{{item.id}}">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+      <input [(ngModel)]="title" [ngModelOptions]="{standalone: true}"  type="title" class="form-control" placeholder="Title">
+      <textarea [(ngModel)]="description" [ngModelOptions]="{standalone: true}" type="desc" class="form-control" rows="5" placeholder="Description"></textarea>
+      <button (click)="clickOnCreate()" class="btn btn-lg btn-primary btn-block" type="submit">Создать</button>
+    </form>
+  </div>
+</ng-template>

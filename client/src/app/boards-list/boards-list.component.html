@@ -1,0 +1,9 @@
+<div *ngFor="let item of boardListObservable | async">
+  <div class="card col-sm-2" (click) = 'clickOnBoardChange(item.id)'>
+    <img src="/assets/place-holder.jpg" alt="Picture" style="width:100%">
+    <div class="container col-sm-2">
+      <h4><b>{{item.name}}</b></h4>
+      <p>{{item.description}}</p>
+    </div>
+  </div>
+</div>
